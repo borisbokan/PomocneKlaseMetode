@@ -1,0 +1,35 @@
+
+------------Prikaz slike na osnovu putanje slike--------------------
+
+//otvoren kod
+ImageView ivImage = (ImageView) findViewById(R.id.iv_image);
+        
+InputStream is = null;
+   try {
+       is = getAssets().open("path slike");
+       Drawable drawable = Drawable.createFromStream(is, null);
+       ivImage.setImageDrawable(drawable);
+    } catch (IOException e) {
+            e.printStackTrace();
+    }
+
+
+
+
+------------------------- ArrayList<Strin> lista slika iz assets foldera -------------------
+ //metoda
+ private ArrayList<String> getFromAssets() {
+
+        String[] list=null;
+         ArrayList<String> arLista=new ArrayList<>();
+
+        try {
+            list=getAssets().list("slike");  // ukoliko su slike u assets folderu a ne u nekom subfolderu staviti samo znake navoda -prazne ili ime sub foldera .list("subfolder");
+            for (String stavka : list ) {
+                arLista.add(stavka);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return arLista;
+    }
